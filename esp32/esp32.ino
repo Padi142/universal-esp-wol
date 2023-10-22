@@ -46,7 +46,7 @@ void handleMessages(int numNewMessages) {
     String chat_id = bot.messages[i].chat_id;
     String text = bot.messages[i].text;
 
-    if (text == "/start_pc") {
+    if (text == "/startPc") {
       
       WOL.sendMagicPacket(MAC_ADDR); 
       delay(300);
@@ -59,7 +59,7 @@ void handleMessages(int numNewMessages) {
     //This command pings you pc
     //You can comment out this section from # to ##
     //#
-    } else if(text == "/is_on"){
+    } else if(text == "/isOn"){
 
       bot.sendMessage(chat_id, "Your PC seems to be: ", "");
       bool status = Ping.ping(local_ip);
@@ -74,9 +74,9 @@ void handleMessages(int numNewMessages) {
     else if (text == "/start") {
 
       String welcome = "✨ Welcome to **WoL Bot** ✨ \n";
-      welcome += "/start_pc : Wakes your PC\n";
+      welcome += "/startPc : Wakes your PC\n";
       welcome += "/ping : Check the bot status\n";
-      welcome += "/is_on : Check status of your PC\n";
+      welcome += "/isOn : Check status of your PC\n";
       bot.sendMessage(chat_id, welcome, "Markdown");
 
     }
@@ -86,6 +86,8 @@ void handleMessages(int numNewMessages) {
 
 
 void setup(){
+  Serial.begin(115200);
+  
   // Configure WiFI
   wifiMulti.addAP(WIFI_SSID, WIFI_PASS);
 
